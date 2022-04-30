@@ -1,6 +1,8 @@
 # DATASHARE
 The aim is to share files in a peer to peer manner using a blockchain to ensure decentralization. 
 
+<img src="https://github.com/developer-arun/mini_project/blob/master/pictures/desktop.png">
+
 <h2>METHODOLOGY</h2>
 
 <h3>4.1 Creating the Blockchain</h3>
