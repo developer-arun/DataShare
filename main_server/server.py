@@ -5,7 +5,8 @@ import pyAesCrypt
 from flask import Flask, flash, request, redirect, render_template, url_for, jsonify
 from flask_socketio import SocketIO, send, emit
 from werkzeug.utils import secure_filename
-import socket
+import bz2
+import sys
 import pickle
 from blockchain import Blockchain
 
@@ -29,6 +30,7 @@ def decrypt_file(file_path, file_key):
     encrypted_file = file_path + ".aes"
     os.rename(file_path, encrypted_file)
     pyAesCrypt.decryptFile(encrypted_file, file_path,  file_key, app.config['BUFFER_SIZE'])
+
 
 def encrypt_file(file_path, file_key):
     pyAesCrypt.encryptFile(file_path, file_path + ".aes",  file_key, app.config['BUFFER_SIZE'])
@@ -54,7 +56,10 @@ def retrieve_from_hash(file_hash, file_key):
         last_line = lines[-1]
     user_file.close()
     file_extension = last_line
+    print(last_line)
+    print(file_extension.decode())
     saved_file = file_path + '.' + file_extension.decode()
+    print(saved_file)
     os.rename(file_path, saved_file)
     print(saved_file)
     return saved_file
